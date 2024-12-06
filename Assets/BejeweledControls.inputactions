@@ -1,0 +1,34 @@
+{
+    "name": "BejeweledControls",
+    "maps": [
+        {
+            "name": "BejeweledActionMap",
+            "id": "ea1534f4-2a16-4cf9-8c7a-e901225d2536",
+            "actions": [
+                {
+                    "name": "MouseClick",
+                    "type": "Value",
+                    "id": "c759c1ab-aa3c-4412-97f9-f8db85bf7bef",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6ca5227d-e71c-452a-b1d4-1c36dbf2c7e5",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
