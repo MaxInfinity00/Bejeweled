@@ -25,6 +25,7 @@ public class Board : MonoBehaviour
     private bool inControl = true;
 
     [SerializeField] private GameObject Marker;
+    private bool GridIsSet = false;
     
 
     private void Start()
@@ -304,12 +305,13 @@ public class Board : MonoBehaviour
         else
         {
             inControl = true;
+            GridIsSet = true;
         }
     }
 
     IEnumerator RemoveGems()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(GridIsSet?1f:0);
         foreach (var gem in GemsToDestroy)
         {
             GemPool.Instance.RemoveGem(gem);
@@ -354,19 +356,19 @@ public class Board : MonoBehaviour
     
     IEnumerator GemFall()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(GridIsSet?0.5f:0);
         foreach (Gem gem in GemsToTween)
         {
-            LeanTween.move(gem.gameObject, gem.tile.position, 1.5f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.move(gem.gameObject, gem.tile.position, GridIsSet?1.5f:0).setEase(LeanTweenType.easeOutQuint);
         }
-        yield return new WaitForSeconds(1.5f);
+        GemsToTween.Clear();
+        yield return new WaitForSeconds(GridIsSet?1.5f:0);
         foreach (Tile tile in GemsToCreate)
         {
             GemPool.Instance.CreateGem(tile);
         }
-        yield return new WaitForSeconds(0.25f);
         GemsToCreate.Clear();
-        GemsToTween.Clear();
+        yield return new WaitForSeconds(GridIsSet?0.25f:0);
         CheckGrid();
     }
     
